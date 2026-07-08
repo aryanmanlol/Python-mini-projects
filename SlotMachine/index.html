@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A modern casino-style slot machine game with stunning visuals and exciting gameplay">
+    <title>Royal Jackpot — Slot Machine</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Ambient particles -->
+    <div class="particles" id="particles"></div>
+
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header" id="header">
+            <div class="logo">
+                <span class="logo-icon">♛</span>
+                <h1 class="logo-text">Royal Jackpot</h1>
+            </div>
+            <div class="balance-display" id="balanceDisplay">
+                <span class="balance-label">BALANCE</span>
+                <span class="balance-amount" id="balanceAmount">$0</span>
+            </div>
+        </header>
+
+        <!-- Deposit Screen -->
+        <div class="deposit-screen" id="depositScreen">
+            <div class="deposit-card">
+                <div class="deposit-glow"></div>
+                <span class="deposit-icon">💰</span>
+                <h2 class="deposit-title">Welcome to Royal Jackpot</h2>
+                <p class="deposit-subtitle">Make a deposit to start playing</p>
+                <div class="deposit-input-group">
+                    <span class="input-prefix">$</span>
+                    <input type="number" id="depositInput" class="deposit-input" placeholder="500" min="500" value="1000">
+                </div>
+                <p class="deposit-hint">Minimum deposit: $500</p>
+                <button class="deposit-btn" id="depositBtn">
+                    <span class="btn-text">Start Playing</span>
+                    <span class="btn-shine"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Game Screen -->
+        <div class="game-screen hidden" id="gameScreen">
+            <!-- Machine Frame -->
+            <div class="machine-frame">
+                <div class="machine-top-lights">
+                    <span class="light"></span><span class="light"></span><span class="light"></span>
+                    <span class="light"></span><span class="light"></span><span class="light"></span>
+                    <span class="light"></span><span class="light"></span><span class="light"></span>
+                    <span class="light"></span><span class="light"></span><span class="light"></span>
+                    <span class="light"></span><span class="light"></span><span class="light"></span>
+                </div>
+
+                <!-- Slot Grid -->
+                <div class="slot-container">
+                    <!-- Line indicators (left) -->
+                    <div class="line-indicators left">
+                        <div class="line-indicator" data-line="1">1</div>
+                        <div class="line-indicator" data-line="2">2</div>
+                        <div class="line-indicator" data-line="3">3</div>
+                    </div>
+
+                    <div class="slot-grid" id="slotGrid">
+                        <!-- Row 0 -->
+                        <div class="slot-cell" data-row="0" data-col="0"><span class="symbol">?</span></div>
+                        <div class="slot-cell" data-row="0" data-col="1"><span class="symbol">?</span></div>
+                        <div class="slot-cell" data-row="0" data-col="2"><span class="symbol">?</span></div>
+                        <!-- Row 1 -->
+                        <div class="slot-cell" data-row="1" data-col="0"><span class="symbol">?</span></div>
+                        <div class="slot-cell" data-row="1" data-col="1"><span class="symbol">?</span></div>
+                        <div class="slot-cell" data-row="1" data-col="2"><span class="symbol">?</span></div>
+                        <!-- Row 2 -->
+                        <div class="slot-cell" data-row="2" data-col="0"><span class="symbol">?</span></div>
+                        <div class="slot-cell" data-row="2" data-col="1"><span class="symbol">?</span></div>
+                        <div class="slot-cell" data-row="2" data-col="2"><span class="symbol">?</span></div>
+                    </div>
+
+                    <!-- Line indicators (right) -->
+                    <div class="line-indicators right">
+                        <div class="line-indicator" data-line="1">1</div>
+                        <div class="line-indicator" data-line="2">2</div>
+                        <div class="line-indicator" data-line="3">3</div>
+                    </div>
+                </div>
+
+                <!-- Result Banner -->
+                <div class="result-banner hidden" id="resultBanner">
+                    <div class="result-content">
+                        <span class="result-icon" id="resultIcon">🎉</span>
+                        <span class="result-text" id="resultText">You Won!</span>
+                        <span class="result-amount" id="resultAmount">+$500</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="controls-panel">
+                <div class="control-group">
+                    <label class="control-label" for="linesInput">LINES</label>
+                    <div class="control-input-wrap">
+                        <button class="control-adjust" id="linesDec" aria-label="Decrease lines">−</button>
+                        <input type="number" id="linesInput" class="control-input" value="1" min="1" max="3" readonly>
+                        <button class="control-adjust" id="linesInc" aria-label="Increase lines">+</button>
+                    </div>
+                </div>
+
+                <div class="spin-section">
+                    <div class="total-bet-display">
+                        <span class="total-label">TOTAL BET</span>
+                        <span class="total-amount" id="totalBetDisplay">$10</span>
+                    </div>
+                    <button class="spin-btn" id="spinBtn">
+                        <span class="spin-btn-inner">
+                            <span class="spin-icon">🎰</span>
+                            <span class="spin-text">SPIN</span>
+                        </span>
+                        <div class="spin-ring"></div>
+                    </button>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="betInput">BET / LINE</label>
+                    <div class="control-input-wrap">
+                        <button class="control-adjust" id="betDec" aria-label="Decrease bet">−</button>
+                        <input type="number" id="betInput" class="control-input" value="10" min="1" max="100000" readonly>
+                        <button class="control-adjust" id="betInc" aria-label="Increase bet">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Paytable -->
+            <div class="paytable">
+                <h3 class="paytable-title">Paytable</h3>
+                <div class="paytable-grid">
+                    <div class="paytable-item">
+                        <span class="paytable-symbol diamond">💎</span>
+                        <span class="paytable-multiplier">×5</span>
+                    </div>
+                    <div class="paytable-item">
+                        <span class="paytable-symbol cherry">🍒</span>
+                        <span class="paytable-multiplier">×4</span>
+                    </div>
+                    <div class="paytable-item">
+                        <span class="paytable-symbol lemon">🍋</span>
+                        <span class="paytable-multiplier">×3</span>
+                    </div>
+                    <div class="paytable-item">
+                        <span class="paytable-symbol seven">7️⃣</span>
+                        <span class="paytable-multiplier">×2</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- History -->
+            <div class="history-panel" id="historyPanel">
+                <h3 class="history-title">Recent Spins</h3>
+                <div class="history-list" id="historyList">
+                    <p class="history-empty">No spins yet — try your luck!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
