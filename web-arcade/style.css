@@ -1,0 +1,817 @@
+:root {
+    --bg-primary: #000080; /* Navy Blue background */
+    --bg-secondary: #c0c0c0; /* Silver grey windows */
+    --bg-card: #ffffff;
+    --win-border: 3px outset #ffffff;
+    --win-border-inner: 1px solid #000000;
+    
+    --neon-gold: #ffff00;
+    --neon-green: #00ff00;
+    --neon-blue: #00ffff;
+    --neon-purple: #ff00ff;
+    --neon-red: #ff0000;
+    
+    --text-main: #000000;
+    --text-muted: #555555;
+    
+    --font-retro: 'Comic Sans MS', 'Courier New', monospace;
+    --font-arcade: 'Press Start 2P', monospace;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #2b2b2b;
+    /* Starry retro tiled background pattern */
+    background-image: radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+                      radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+                      radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px);
+    background-size: 550px 550px, 350px 350px, 250px 250px;
+    background-position: 0 0, 40px 60px, 130px 270px;
+    color: #ffffff;
+    font-family: var(--font-retro);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Classic 90s Rainbow Divider */
+hr {
+    border: none;
+    height: 8px;
+    background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+    margin: 15px 0;
+}
+
+/* Layout Container */
+.arcade-container {
+    display: flex;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Sidebar (Windows 95/Geocities Style) */
+.sidebar {
+    width: 240px;
+    background: #c0c0c0;
+    border: 3px outset #ffffff;
+    padding: 15px;
+    color: #000000;
+    flex-shrink: 0;
+}
+
+.arcade-logo {
+    background: linear-gradient(90deg, #000080, #1084d0);
+    padding: 8px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    border: 1px inset #808080;
+}
+
+.arcade-logo .logo-icon {
+    font-size: 1.8rem;
+    animation: spin 3s infinite linear;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.arcade-logo h2 {
+    font-family: var(--font-retro);
+    font-size: 1rem;
+    font-weight: bold;
+    text-shadow: 2px 2px #000;
+}
+
+.nav-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.nav-btn {
+    background: #c0c0c0;
+    border: 3px outset #ffffff;
+    color: #000000;
+    font-family: var(--font-retro);
+    font-size: 0.95rem;
+    font-weight: bold;
+    text-align: left;
+    padding: 10px 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-btn:hover {
+    background: #e0e0e0;
+}
+
+.nav-btn.active {
+    background: #e0e0e0;
+    border: 3px inset #ffffff;
+    padding: 11px 14px 9px 16px; /* 3D press effect */
+    color: #000080;
+}
+
+.sidebar-footer {
+    margin-top: 30px;
+    border-top: 2px inset #ffffff;
+    padding-top: 15px;
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #808080;
+}
+
+/* Main Content Area */
+.main-content {
+    flex-grow: 1;
+    background: #c0c0c0;
+    border: 3px outset #ffffff;
+    padding: 25px;
+    color: #000000;
+}
+
+/* Game Sections Toggle */
+.game-section {
+    display: none;
+}
+
+.game-section.active {
+    display: block;
+}
+
+/* HUB PAGE (Geocities Welcome) */
+.hub-hero {
+    background: #000080;
+    color: #ffff00;
+    border: 3px inset #808080;
+    padding: 30px;
+    margin-bottom: 25px;
+    text-align: center;
+    text-shadow: 2px 2px #ff00ff;
+}
+
+.hub-hero h1 {
+    font-family: var(--font-arcade);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 15px;
+    animation: blink-text 1s infinite alternate;
+}
+
+@keyframes blink-text {
+    0% { opacity: 1; }
+    100% { opacity: 0.2; }
+}
+
+.hub-hero p {
+    font-size: 1.1rem;
+    color: #00ffff;
+    text-shadow: 1px 1px #000;
+}
+
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.game-card {
+    background: #e0e0e0;
+    border: 3px outset #ffffff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+}
+
+.game-card:hover {
+    border-color: #808080;
+    background: #d8d8d8;
+}
+
+.card-badge {
+    font-family: var(--font-retro);
+    font-size: 0.75rem;
+    padding: 3px 8px;
+    border: 2px inset #ffffff;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.neon-gold { background: #ffff00; color: #000; }
+.neon-green { background: #00ff00; color: #000; }
+.neon-blue { background: #00ffff; color: #000; }
+.neon-purple { background: #ff00ff; color: #fff; }
+
+.card-icon {
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+    filter: drop-shadow(3px 3px 0px #000);
+}
+
+.game-card h3 {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #000080;
+}
+
+.game-card p {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    margin-bottom: 15px;
+    flex-grow: 1;
+    color: #333;
+}
+
+.play-btn {
+    width: 100%;
+    background: #000080;
+    color: #ffffff;
+    border: 3px outset #ffffff;
+    padding: 8px;
+    font-weight: bold;
+    font-family: var(--font-retro);
+    cursor: pointer;
+}
+
+.play-btn:active {
+    border-style: inset;
+}
+
+/* GENERAL GAME HEADER */
+.game-header {
+    background: linear-gradient(90deg, #000080, #1084d0);
+    padding: 10px 15px;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    border: 3px inset #808080;
+}
+
+.game-header h2 {
+    font-size: 1rem;
+    font-family: var(--font-retro);
+}
+
+.arcade-btn {
+    font-family: var(--font-retro);
+    font-size: 0.9rem;
+    font-weight: bold;
+    padding: 8px 16px;
+    border: 3px outset #ffffff;
+    background: #c0c0c0;
+    color: #000000;
+    cursor: pointer;
+}
+
+.arcade-btn:active {
+    border-style: inset;
+}
+
+.arcade-btn.success {
+    background: #00ff00;
+}
+.arcade-btn.warning {
+    background: #ff00ff;
+    color: #ffffff;
+}
+
+/* SLOTS GAME UI */
+.slots-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.overlay-card {
+    background: #c0c0c0;
+    border: 4px outset #ffffff;
+    padding: 30px;
+    text-align: center;
+    max-width: 380px;
+    width: 90%;
+    color: #00;
+}
+
+.overlay-card h2 {
+    margin-bottom: 12px;
+    color: #000080;
+}
+
+.deposit-input-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    border: 3px inset #808080;
+    padding: 8px;
+    margin-bottom: 20px;
+}
+
+.deposit-input-wrapper input {
+    border: none;
+    outline: none;
+    font-family: var(--font-retro);
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-align: center;
+    width: 120px;
+}
+
+.balance-display {
+    background: #000;
+    border: 3px inset #808080;
+    padding: 5px 12px;
+    color: #00ff00;
+    font-family: var(--font-retro);
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.slots-layout {
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    gap: 20px;
+}
+
+.slots-panel {
+    background: #e0e0e0;
+    border: 3px inset #ffffff;
+    padding: 15px;
+}
+
+.slots-panel h3 {
+    text-align: center;
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+    color: #000080;
+    border-bottom: 2px inset #ffffff;
+    padding-bottom: 5px;
+}
+
+.pay-list li {
+    font-size: 0.85rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    background: #ffffff;
+    border: 2px inset #808080;
+    padding: 6px;
+    margin-bottom: 8px;
+}
+
+.slots-machine-frame {
+    background: #808080;
+    border: 5px outset #ffffff;
+    padding: 20px;
+    box-shadow: 4px 4px 0px #000000;
+}
+
+.marquee-lights {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 12px;
+    background: #000;
+    padding: 5px;
+    border: 2px inset #ffffff;
+}
+
+.marquee-lights span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ff0000;
+    animation: flash 0.3s infinite alternate;
+}
+
+.marquee-lights span:nth-child(even) {
+    background: #ffff00;
+    animation-delay: 0.15s;
+}
+
+@keyframes flash {
+    from { opacity: 0.2; }
+    to { opacity: 1; }
+}
+
+.machine-screen {
+    background: #000080;
+    border: 4px inset #808080;
+    padding: 15px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.reels-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    height: 120px;
+}
+
+.reel {
+    background: #fcb444; 
+    border: 3px inset #808080;
+    overflow: hidden;
+    position: relative;
+    height: 100%;
+}
+
+.reel-strip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    top: 0;
+}
+
+.reel-strip .symbol {
+    height: 120px;
+    font-size: 2.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.result-banner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #ffff00;
+    color: #ff0000;
+    border: 4px outset #ffffff;
+    padding: 10px 20px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.1rem;
+    box-shadow: 5px 5px 0px #000;
+    z-index: 5;
+    animation: bounce 0.5s infinite alternate;
+}
+
+@keyframes bounce {
+    from { transform: translate(-50%, -52%); }
+    to { transform: translate(-50%, -48%); }
+}
+
+.machine-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #c0c0c0;
+    padding: 10px;
+    border: 3px inset #ffffff;
+}
+
+.num-selector {
+    display: flex;
+    border: 2px inset #808080;
+    background: #fff;
+}
+
+.num-selector button {
+    background: #c0c0c0;
+    border: 1px outset #fff;
+    width: 22px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.num-selector input {
+    border: none;
+    width: 35px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.total-bet-box {
+    text-align: center;
+    background: #000;
+    color: #ff00ff;
+    padding: 4px 8px;
+    font-weight: bold;
+    border: 2px inset #808080;
+}
+
+.spin-btn {
+    font-family: var(--font-retro);
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 8px 20px;
+    background: #ff0000;
+    color: #fff;
+    border: 3px outset #ffffff;
+    cursor: pointer;
+}
+
+.spin-btn:active {
+    border-style: inset;
+}
+
+.history-item {
+    font-size: 0.8rem;
+    font-weight: bold;
+    background: #fff;
+    border: 2px inset #808080;
+    padding: 6px;
+    margin-bottom: 6px;
+}
+
+.history-item.win {
+    color: #008000;
+    background: #e6ffe6;
+}
+
+/* TURTLE RACING UI */
+.race-arena {
+    background: #008080; /* Teal classic track */
+    border: 4px inset #808080;
+    padding: 15px;
+    position: relative;
+}
+
+#race-canvas {
+    border: 3px inset #808080;
+    background: #006666;
+    display: block;
+    width: 100%;
+}
+
+.controls-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.controls-row input {
+    padding: 5px;
+    width: 50px;
+    font-weight: bold;
+    border: 2px inset #808080;
+}
+
+/* TRIVIA CHALLENGE */
+.trivia-container {
+    display: flex;
+    justify-content: center;
+}
+
+.trivia-card {
+    background: #e0e0e0;
+    border: 4px outset #ffffff;
+    padding: 25px;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 4px 4px 0px #000;
+}
+
+.trivia-card h3 {
+    color: #000080;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+.quiz-progress {
+    font-weight: bold;
+    color: #800080;
+    margin-bottom: 10px;
+}
+
+.quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.option-btn {
+    background: #ffffff;
+    border: 3px outset #ffffff;
+    padding: 12px;
+    font-family: var(--font-retro);
+    font-weight: bold;
+    text-align: left;
+    cursor: pointer;
+}
+
+.option-btn:hover {
+    background: #f0f0f0;
+}
+
+.option-btn.correct {
+    background: #00ff00 !important;
+    color: #000;
+}
+
+.option-btn.wrong {
+    background: #ff0000 !important;
+    color: #fff;
+}
+
+/* ROCK PAPER SCISSORS */
+.rps-container {
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.rps-battlefield {
+    background: #e0e0e0;
+    border: 4px inset #ffffff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.fighter-hand {
+    font-size: 3.5rem;
+    background: #fff;
+    border: 3px inset #808080;
+    padding: 10px;
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.vs-text {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #ff0000;
+}
+
+.rps-outcome-banner {
+    background: #ffff00;
+    border: 3px inset #808080;
+    padding: 10px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.rps-choices {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.rps-choice-btn {
+    flex: 1;
+    background: #c0c0c0;
+    border: 3px outset #ffffff;
+    padding: 12px;
+    cursor: pointer;
+    font-family: var(--font-retro);
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.rps-choice-btn:active {
+    border-style: inset;
+}
+
+/* CHOOSE YOUR OWN ADVENTURE */
+.adventure-game-box {
+    background: #e0e0e0;
+    border: 4px outset #ffffff;
+    max-width: 580px;
+    margin: 0 auto;
+    box-shadow: 4px 4px 0px #000;
+}
+
+.adventure-screen-display {
+    background: #5c94fc; 
+    border: 3px inset #808080;
+    position: relative;
+    overflow: hidden;
+    height: 250px;
+    image-rendering: pixelated;
+}
+
+#adventure-scenery {
+    width: 100%;
+    height: calc(100% - 60px);
+    object-fit: cover;
+    opacity: 0.95;
+    z-index: 1;
+    position: relative;
+}
+
+.avatar-container {
+    position: absolute;
+    bottom: 12px;
+    left: 20px;
+    width: 65px;
+    height: 65px;
+    animation: walk-sway 1.5s infinite ease-in-out;
+    z-index: 11;
+}
+
+@keyframes walk-sway {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0); }
+}
+
+.adventure-story-card {
+    padding: 20px;
+    background: #ffffff;
+    border-top: 3px inset #ffffff;
+    color: #000;
+}
+
+.adventure-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+/* MARIO STYLING & DEATH ANIMATIONS */
+.death-cause {
+    position: absolute;
+    top: -45px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2.5rem;
+    animation: cause-bounce 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) infinite alternate;
+    z-index: 20;
+    text-shadow: 2px 2px 0px #000;
+}
+
+.death-cause.hidden {
+    display: none;
+}
+
+@keyframes cause-bounce {
+    0% { transform: translateX(-50%) translateY(0); }
+    100% { transform: translateX(-50%) translateY(-8px); }
+}
+
+@keyframes mario-die-anim {
+    0% { transform: translateY(0) rotate(0deg); }
+    20% { transform: translateY(-90px) rotate(90deg); }
+    100% { transform: translateY(320px) rotate(180deg); }
+}
+
+.avatar-container.dead {
+    animation: mario-die-anim 1.5s cubic-bezier(0.3, 0.86, 0.6, 1) forwards;
+}
+
+.adventure-ground {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px; /* taller ground block to cover checkers */
+    background: #fcb444; /* Mario brown brick dirt/ground block visual */
+    border-top: 6px solid #55b02b; /* beautiful green grass top! */
+    background-image: repeating-linear-gradient(90deg, #fcb444, #fcb444 15px, #747474 15px, #747474 17px);
+    z-index: 10;
+}
+
+/* Mario Brick slot machine styling */
+.slots-machine-frame {
+    background: #e75926; /* Mario Red Brick color */
+    border: 6px outset #fcb444;
+    box-shadow: 6px 6px 0px #000;
+    background-image: linear-gradient(rgba(0,0,0,0.15) 2px, transparent 2px),
+                      linear-gradient(90deg, rgba(0,0,0,0.15) 2px, transparent 2px);
+    background-size: 20px 20px;
+}
+
+/* Global display utilities */
+.hidden {
+    display: none !important;
+}

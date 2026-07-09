@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retro Game Arcade</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="arcade-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="arcade-logo">
+                <span class="logo-icon">🕹️</span>
+                <h2>MINI ARCADE</h2>
+            </div>
+            <nav class="nav-menu">
+                <button class="nav-btn active" data-game="hub">
+                    <span class="btn-icon">🏠</span> <span class="btn-text">Home Hub</span>
+                </button>
+                <button class="nav-btn" data-game="slots">
+                    <span class="btn-icon">🎰</span> <span class="btn-text">Slot Machine</span>
+                </button>
+                <button class="nav-btn" data-game="turtles">
+                    <span class="btn-icon">🐢</span> <span class="btn-text">Turtle Racing</span>
+                </button>
+                <button class="nav-btn" data-game="trivia">
+                    <span class="btn-icon">💡</span> <span class="btn-text">Trivia Challenge</span>
+                </button>
+                <button class="nav-btn" data-game="rps">
+                    <span class="btn-icon">✊</span> <span class="btn-text">Rock Paper Sci</span>
+                </button>
+                <button class="nav-btn" data-game="adventure">
+                    <span class="btn-icon">🗺️</span> <span class="btn-text">Adventure Quest</span>
+                </button>
+            </nav>
+            <div class="sidebar-footer">
+                <p>Python Portfolio</p>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- GAME HUB -->
+            <section id="game-hub" class="game-section active">
+                <div class="hub-hero">
+                    <h1>Welcome to the Retro Web Arcade!</h1>
+                    <p>Play interactive, web-based versions of Python classic mini-games built with stunning visuals and micro-animations.</p>
+                </div>
+                <div class="games-grid">
+                    <!-- Slots Card -->
+                    <div class="game-card" data-game="slots">
+                        <div class="card-badge neon-gold">CASINO</div>
+                        <div class="card-icon">🎰</div>
+                        <h3>Slot Machine</h3>
+                        <p>Bet on multiple lines, spin the retro reels, and try your luck at the jackpot!</p>
+                        <button class="play-btn">Play Now</button>
+                    </div>
+                    <!-- Turtle Racing Card -->
+                    <div class="game-card" data-game="turtles">
+                        <div class="card-badge neon-green">RACING</div>
+                        <div class="card-icon">🐢</div>
+                        <h3>Turtle Racing</h3>
+                        <p>Set the number of colorful racers and watch them sprint to the finish line!</p>
+                        <button class="play-btn">Play Now</button>
+                    </div>
+                    <!-- Trivia Card -->
+                    <div class="game-card" data-game="trivia">
+                        <div class="card-badge neon-blue">QUIZ</div>
+                        <div class="card-icon">💡</div>
+                        <h3>Trivia Challenge</h3>
+                        <p>Test your general knowledge across multiple categories in a clean card quiz format.</p>
+                        <button class="play-btn">Play Now</button>
+                    </div>
+                    <!-- RPS Card -->
+                    <div class="game-card" data-game="rps">
+                        <div class="card-badge neon-purple">CLASSIC</div>
+                        <div class="card-icon">✊</div>
+                        <h3>Rock Paper Scissors</h3>
+                        <p>Go head-to-head against the computer and dominate the scoreboard.</p>
+                        <button class="play-btn">Play Now</button>
+                    </div>
+                    <!-- Adventure Card -->
+                    <div class="game-card" data-game="adventure">
+                        <div class="card-badge neon-gold">RPG</div>
+                        <div class="card-icon">🗺️</div>
+                        <h3>Adventure Quest</h3>
+                        <p>Choose your own path, avoid hazards, and claim the treasure chest.</p>
+                        <button class="play-btn">Play Now</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLOT MACHINE -->
+            <section id="game-slots" class="game-section">
+                <!-- Deposit overlay screen -->
+                <div id="slots-deposit-screen" class="slots-overlay">
+                    <div class="overlay-card">
+                        <h2>💰 Bank Deposit</h2>
+                        <p>Enter your initial balance to play (Min $500)</p>
+                        <div class="deposit-input-wrapper">
+                            <span class="currency-symbol">$</span>
+                            <input type="number" id="slots-deposit-input" value="1000" min="500">
+                        </div>
+                        <button id="slots-deposit-btn" class="arcade-btn">Deposit & Play</button>
+                    </div>
+                </div>
+
+                <div class="game-header">
+                    <h2>🎰 Slot Machine</h2>
+                    <div class="balance-display">
+                        <span class="label">BALANCE:</span>
+                        <span id="slots-balance" class="value">$0</span>
+                    </div>
+                </div>
+
+                <div class="slots-layout">
+                    <!-- Paytable sidebar -->
+                    <div class="slots-panel paytable-panel">
+                        <h3>PAYTABLE</h3>
+                        <ul class="pay-list">
+                            <li><span class="symbol">💎</span> A: ×5</li>
+                            <li><span class="symbol">🍒</span> B: ×4</li>
+                            <li><span class="symbol">🍋</span> C: ×3</li>
+                            <li><span class="symbol">🔔</span> D: ×2</li>
+                        </ul>
+                    </div>
+
+                    <!-- Main machine physical frame -->
+                    <div class="slots-machine-frame">
+                        <div class="marquee-lights">
+                            <span></span><span></span><span></span><span></span><span></span><span></span>
+                        </div>
+                        <div class="machine-screen">
+                            <div class="reels-container" id="reels-container">
+                                <div class="reel" id="reel-0">
+                                    <div class="reel-strip"><div class="symbol">❓</div><div class="symbol">❓</div><div class="symbol">❓</div></div>
+                                </div>
+                                <div class="reel" id="reel-1">
+                                    <div class="reel-strip"><div class="symbol">❓</div><div class="symbol">❓</div><div class="symbol">❓</div></div>
+                                </div>
+                                <div class="reel" id="reel-2">
+                                    <div class="reel-strip"><div class="symbol">❓</div><div class="symbol">❓</div><div class="symbol">❓</div></div>
+                                </div>
+                            </div>
+                            
+                            <div id="slots-result-banner" class="result-banner hidden">
+                                <span class="banner-text">WINNER!</span>
+                                <span class="banner-amount">+$100</span>
+                            </div>
+                        </div>
+
+                        <!-- Machine Controls -->
+                        <div class="machine-controls">
+                            <div class="control-box">
+                                <label>LINES</label>
+                                <div class="num-selector">
+                                    <button id="slots-lines-dec">-</button>
+                                    <input type="number" id="slots-lines" value="1" min="1" max="3" readonly>
+                                    <button id="slots-lines-inc">+</button>
+                                </div>
+                            </div>
+                            <div class="control-box">
+                                <label>BET/LINE</label>
+                                <div class="num-selector">
+                                    <button id="slots-bet-dec">-</button>
+                                    <input type="number" id="slots-bet" value="10" min="1" max="1000" readonly>
+                                    <button id="slots-bet-inc">+</button>
+                                </div>
+                            </div>
+                            <div class="total-bet-box">
+                                <span class="label">TOTAL BET</span>
+                                <span id="slots-total-bet" class="value">$10</span>
+                            </div>
+                            <button id="slots-spin-btn" class="spin-btn">SPIN</button>
+                        </div>
+                    </div>
+
+                    <!-- Spin History Panel -->
+                    <div class="slots-panel history-panel">
+                        <h3>SPIN LOG</h3>
+                        <div id="slots-history" class="history-list">
+                            <div class="history-empty">No spins yet</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TURTLE RACING -->
+            <section id="game-turtles" class="game-section">
+                <div class="game-header">
+                    <h2>🐢 Multi-Turtle Dash</h2>
+                    <div class="controls-row">
+                        <label>Racers (2-10):</label>
+                        <input type="number" id="racer-count" value="5" min="2" max="10">
+                        <button id="setup-race-btn" class="arcade-btn">Setup Race</button>
+                        <button id="start-race-btn" class="arcade-btn success" disabled>Start Race</button>
+                    </div>
+                </div>
+
+                <div class="race-arena">
+                    <canvas id="race-canvas" width="700" height="400"></canvas>
+                    <div id="race-banner" class="race-banner hidden">
+                        <span id="race-winner-text">Red Turtle Won!</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TRIVIA CHALLENGE -->
+            <section id="game-trivia" class="game-section">
+                <div class="game-header">
+                    <h2>💡 Trivia Quiz Challenge</h2>
+                    <div class="scoreboard">
+                        <span>Score: <strong id="trivia-score">0</strong>/5</span>
+                    </div>
+                </div>
+
+                <div class="trivia-container">
+                    <!-- Intro Screen -->
+                    <div id="trivia-intro" class="trivia-screen">
+                        <div class="trivia-card">
+                            <h3>Test Your Knowledge!</h3>
+                            <p>You will be asked 5 random trivia questions. Try to answer all of them correctly.</p>
+                            <button id="start-trivia-btn" class="arcade-btn">Start Quiz</button>
+                        </div>
+                    </div>
+
+                    <!-- Active Quiz Card -->
+                    <div id="trivia-quiz" class="trivia-screen hidden">
+                        <div class="trivia-card question-card">
+                            <div class="quiz-progress">Question <span id="trivia-current">1</span> of 5</div>
+                            <h3 id="trivia-question">Question text here?</h3>
+                            <div class="quiz-options" id="trivia-options">
+                                <!-- Generated buttons will go here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- End Game Screen -->
+                    <div id="trivia-results" class="trivia-screen hidden">
+                        <div class="trivia-card">
+                            <h3>Quiz Completed!</h3>
+                            <div class="final-score-display">
+                                <span class="score-num" id="trivia-final-score">0</span>
+                                <span class="slash">/</span>
+                                <span class="total-num">5</span>
+                            </div>
+                            <p id="trivia-performance-text">Great job!</p>
+                            <button id="reset-trivia-btn" class="arcade-btn">Play Again</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ROCK PAPER SCISSORS -->
+            <section id="game-rps" class="game-section">
+                <div class="game-header">
+                    <h2>✊ Rock Paper Scissors</h2>
+                    <div class="rps-scores">
+                        <div class="score-badge">USER: <span id="rps-user-score">0</span></div>
+                        <div class="score-badge">CPU: <span id="rps-cpu-score">0</span></div>
+                    </div>
+                </div>
+
+                <div class="rps-container">
+                    <div class="rps-battlefield">
+                        <div class="fighter user-fighter">
+                            <span class="fighter-label">YOU</span>
+                            <div class="fighter-hand" id="rps-user-hand">✊</div>
+                        </div>
+                        <div class="vs-text">VS</div>
+                        <div class="fighter cpu-fighter">
+                            <span class="fighter-label">CPU</span>
+                            <div class="fighter-hand" id="rps-cpu-hand">✊</div>
+                        </div>
+                    </div>
+
+                    <div id="rps-outcome" class="rps-outcome-banner">
+                        Choose your move to begin!
+                    </div>
+
+                    <div class="rps-choices">
+                        <button class="rps-choice-btn" data-choice="rock">
+                            <span class="choice-emoji">✊</span>
+                            <span class="choice-label">Rock</span>
+                        </button>
+                        <button class="rps-choice-btn" data-choice="paper">
+                            <span class="choice-emoji">🖐️</span>
+                            <span class="choice-label">Paper</span>
+                        </button>
+                        <button class="rps-choice-btn" data-choice="scissors">
+                            <span class="choice-emoji">✌️</span>
+                            <span class="choice-label">Scissors</span>
+                        </button>
+                    </div>
+
+                    <button id="reset-rps-btn" class="arcade-btn warning">Reset Score</button>
+                </div>
+            </section>
+
+            <!-- CHOOSE YOUR OWN ADVENTURE -->
+            <section id="game-adventure" class="game-section">
+                <div class="game-header">
+                    <h2>🗺️ Choose Your Own Adventure</h2>
+                </div>
+
+                <div class="adventure-container">
+                    <div class="adventure-game-box">
+                        <div class="adventure-screen-display">
+                            <img id="adventure-scenery" src="assets/adventure_start.png" alt="Adventure Scenery">
+                            <div class="adventure-ground"></div>
+                            <div class="avatar-container" id="adventure-avatar-container">
+                                <img id="adventure-avatar" src="assets/adventure_avatar.png" alt="Hero Avatar">
+                                <div id="death-cause-overlay" class="death-cause hidden">💀</div>
+                            </div>
+                        </div>
+
+                        <div class="adventure-story-card">
+                            <div id="adventure-name-input-screen">
+                                <h3>Enter Your Name to Begin</h3>
+                                <div class="name-input-group">
+                                    <input type="text" id="adventure-username" placeholder="Adventurer">
+                                    <button id="start-adventure-btn" class="arcade-btn">Begin Quest</button>
+                                </div>
+                            </div>
+
+                            <div id="adventure-story-gameplay" class="hidden">
+                                <h3 id="adventure-title">Adventure Start</h3>
+                                <p id="adventure-text">Story goes here...</p>
+                                <div class="adventure-options" id="adventure-choices">
+                                    <!-- Options buttons generated here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
